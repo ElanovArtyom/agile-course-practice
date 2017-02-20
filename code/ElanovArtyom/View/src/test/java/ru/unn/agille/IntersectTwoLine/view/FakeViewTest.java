@@ -1,7 +1,12 @@
 package ru.unn.agille.IntersectTwoLine.view;
+import org.junit.Ignore;
+import org.junit.Test;
 
-/**
- * Created by Artyom on 021 21.02.17.
- */
+import static org.junit.Assert.fail;
+
 public class FakeViewTest {
+    @Ignore @Test
+    public void fakeTest() {
+        fail("No tests for view");
+    }
 }
