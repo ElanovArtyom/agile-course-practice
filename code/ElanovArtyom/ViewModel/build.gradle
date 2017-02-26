@@ -1,9 +1,5 @@
 
 
-javafx {
-    mainClass 'ru.unn.agile.IntersectTwoLine.viewmodel.ViewModel'
-}
-
 dependencies {
     compile project(':ElanovArtyom-Model')
 }
