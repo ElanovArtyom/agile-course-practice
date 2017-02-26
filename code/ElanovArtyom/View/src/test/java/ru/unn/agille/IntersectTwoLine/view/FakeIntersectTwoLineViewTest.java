@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.fail;
 
-public class FakeViewTest {
+public class FakeIntersectTwoLineViewTest {
     @Ignore
     @Test
     public void fakeTest() {
