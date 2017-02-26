@@ -1,4 +1,4 @@
-package ru.unn.agile.IntersectTwoLine;
+package ru.unn.agile.IntersectTwoLine.model;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package ru.unn.agile.IntersectTwoLine;
+package ru.unn.agile.IntersectTwoLine.model;
 
 
 public class LineSegment2D {
@@ -11,6 +11,12 @@ public class LineSegment2D {
         this.coefficientA = factorA;
         this.coefficientB = factorB;
         this.coefficientC = factorC;
+    }
+
+    public LineSegment2D(final String factorA, final String factorB, final String factorC) {
+        this.coefficientA = Double.parseDouble(factorA);
+        this.coefficientB = Double.parseDouble(factorB);
+        this.coefficientC = Double.parseDouble(factorC);
     }
 
     public double getA() {
@@ -34,15 +40,15 @@ public class LineSegment2D {
         double coordinatesX, coordinatesY;
         if (lineSegment2.getA() / getA() == lineSegment2.getB() / getB()
                 & lineSegment2.getA() / getA() == lineSegment2.getC() / getC()) {
-            return "Lines math";
+            return "Lines match";
         } else if (lineSegment2.getA() / getA() == lineSegment2.getB() / getB()) {
             return "Lines are parallel";
         } else {
-            coordinatesX = (-1) * (getC() * lineSegment2.getB() - lineSegment2.getC() * getB())
+            coordinatesX = (getC() * lineSegment2.getB() - lineSegment2.getC() * getB())
                     / (getA() * lineSegment2.getB() - getB() * lineSegment2.getA());
-            coordinatesY = (-1) * (getA() * lineSegment2.getC() - lineSegment2.getA() * getC())
+            coordinatesY = (getA() * lineSegment2.getC() - lineSegment2.getA() * getC())
                     / (getA() * lineSegment2.getB() - lineSegment2.getA() * getB());
-            return "Intersection point (" + coordinatesX + ";" + coordinatesY + ")";
+            return "Intersection point ( " + coordinatesX + " ; " + coordinatesY + " )";
 
         }
     }

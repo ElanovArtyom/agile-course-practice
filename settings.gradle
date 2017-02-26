@@ -116,6 +116,7 @@ include "code/ElanovArtyom/View"
 project(":code/ElanovArtyom/View").name = "ElanovArtyom-View"
 include "code/ElanovArtyom/ViewModel"
 project(":code/ElanovArtyom/ViewModel").name = "ElanovArtyom-ViewModel"
+
 // Зайдуллова Алина
 include "code/TreeSort/Model"
 project(":code/TreeSort/Model").name = "TreeSort-Model"

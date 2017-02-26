@@ -1,4 +1,4 @@
-package ru.unn.agile.IntersectTwoLine;
+package ru.unn.agile.IntersectTwoLine.model;
 
 public final class Formatter {
 

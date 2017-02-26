@@ -15,11 +15,16 @@ public class LineSegment2DView {
     }
 
     private JPanel main_panel;
-    private JTextField аTextField;
-    private JTextField вTextField;
-    private JTextField сTextField;
-    private JButton проверитьНаПересечениеНАЖМИButton;
-    private JTextField textField4;
+    private JTextField a1TextField;
+    private JTextField b1TextField;
+    private JTextField c1TextField;
+    private JButton Button;
+    private JTextField textSolve;
+    private JLabel lbSolve;
+    private JTextField b2TextField;
+    private JTextField a2TextField;
+    private JTextField c2TextField;
+    private JLabel lbStatus;
 
     private void createUIComponents() {
         // TODO: place custom component creation code here

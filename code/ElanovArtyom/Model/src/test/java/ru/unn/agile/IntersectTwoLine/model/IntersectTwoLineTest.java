@@ -1,4 +1,4 @@
-package ru.unn.agile.IntersectTwoLine;
+package ru.unn.agile.IntersectTwoLine.model;
 
 
 
@@ -48,7 +48,7 @@ public class IntersectTwoLineTest {
     public void showThatLinesMatch() {
         LineSegment2D lineSegment1 = new LineSegment2D(2.1, 3.1, -1);
         LineSegment2D lineSegment2 = new LineSegment2D(4.2, 6.2, -2);
-        assertEquals("Lines math", lineSegment1.checkIntersection(lineSegment2));
+        assertEquals("Lines match", lineSegment1.checkIntersection(lineSegment2));
     }
 
 
