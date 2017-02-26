@@ -71,49 +71,31 @@ public class ViewModel {
     }
 
     public void setA1(final String a1) {
-        if (a1.equals(this.a1)) {
-            return;
-        }
 
         this.a1 = a1;
     }
 
     public void setB1(final String b1) {
-        if (b1.equals(this.b1)) {
-            return;
-        }
 
         this.b1 = b1;
     }
 
     public void setC1(final String c1) {
-        if (c1.equals(this.c1)) {
-            return;
-        }
 
         this.c1 = c1;
     }
 
     public void setA2(final String a2) {
-        if (a2.equals(this.a2)) {
-            return;
-        }
 
         this.a2 = a2;
     }
 
     public void setB2(final String b2) {
-        if (b2.equals(this.b2)) {
-            return;
-        }
 
         this.b2 = b2;
     }
 
     public void setC2(final String c2) {
-        if (c2.equals(this.c2)) {
-            return;
-        }
 
         this.c2 = c2;
     }

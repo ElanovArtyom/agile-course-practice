@@ -1,4 +1,4 @@
-package ru.unn.agille.IntersectTwoLine.view;
+package ru.unn.agile.IntersectTwoLine.view;
 
 import ru.unn.agile.IntersectTwoLine.viewmodel.ViewModel;
 
