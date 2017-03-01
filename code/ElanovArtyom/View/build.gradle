@@ -1,0 +1,11 @@
+
+
+dependencies {
+    compile project(':ElanovArtyom-ViewModel')
+    compile project(':ElanovArtyom-Infrastructure')
+}
+
+sourceSets {
+    main.java.srcDir 'src/main/java'
+    test.java.srcDir 'src/test/java'
+}

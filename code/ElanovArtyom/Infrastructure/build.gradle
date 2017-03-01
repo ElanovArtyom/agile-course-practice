@@ -1,0 +1,5 @@
+
+dependencies {
+    compile project(':ElanovArtyom-ViewModel')
+    testCompile project(':ElanovArtyom-ViewModel').sourceSets.test.output
+}
