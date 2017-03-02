@@ -44,14 +44,12 @@ public class ViewModel {
         public static final String BAD_FORMAT = "Bad format";
         public static final String SUCCESS = "Success";
 
-        private Status() { }
     }
 
     public final class LogMessages {
         public static final String CALCULATE_WAS_PRESSED = "Calculate. ";
         public static final String EDITING_FINISHED = "Updated input. ";
-
-        private LogMessages() { }
+        
     }
 
     public List<String> getLogs() {
