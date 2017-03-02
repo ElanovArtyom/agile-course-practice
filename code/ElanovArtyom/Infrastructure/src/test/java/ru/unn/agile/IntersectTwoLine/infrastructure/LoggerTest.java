@@ -9,13 +9,13 @@ import java.io.FileReader;
 import java.util.List;
 import static junit.framework.TestCase.assertNotNull;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static ru.unn.agile.IntersectTwoLine.viewmodel.RegexMatcher.matchesPattern;
+import static ru.unn.agile.IntersectTwoLine.viewmodel.Regexmatchers.matchesPattern;
 
 /**
  * Created by Artyom on 001 01.03.17.
  */
 public class LoggerTest {
-    private static final String FILENAME = "./LoggerTest.log";
+    private static final String FILENAME = "./LoggerTest.logging";
     private Logger txtLogger;
 
     @Before
@@ -24,49 +24,49 @@ public class LoggerTest {
     }
 
     @Test
-    public void canCreateLoggerWithFileName() {
+    public void canCreateLoggerAndSetFileName() {
         assertNotNull(txtLogger);
     }
 
     @Test
-    public void canCreateLogFileOnDisk() {
+    public void canCreateLoggerFileOnHDD() {
         try {
             new BufferedReader(new FileReader(FILENAME));
         } catch (FileNotFoundException e) {
-            fail("File " + FILENAME + " wasn't found!");
+            fail("File " + FILENAME + " was not found!");
         }
     }
 
     @Test
-    public void canWriteLogMessage() {
-        String testMessage = "Test message";
+    public void canWriteLogger() {
+        String testMessage = "Test test test";
 
-        txtLogger.log(testMessage);
+        txtLogger.logging(testMessage);
 
-        String message = txtLogger.getLog().get(0);
+        String message = txtLogger.getLogs().get(0);
         assertThat(message, matchesPattern(".*" + testMessage + "$"));
     }
 
     @Test
-    public void canWriteSeveralLogMessage() {
-        String[] messages = {"Test message 1", "Test message 2"};
+    public void canWriteTwoLogMessages() {
+        String[] logMessages = {"Test 1", "Test 2"};
 
-        txtLogger.log(messages[0]);
-        txtLogger.log(messages[1]);
+        txtLogger.logging(logMessages[0]);
+        txtLogger.logging(logMessages[1]);
 
-        List<String> actualMessages = txtLogger.getLog();
+        List<String> actualMessages = txtLogger.getLogs();
         for (int i = 0; i < actualMessages.size(); i++) {
-            assertThat(actualMessages.get(i), matchesPattern(".*" + messages[i] + "$"));
+            assertThat(actualMessages.get(i), matchesPattern(".*" + logMessages[i] + "$"));
         }
     }
 
     @Test
-    public void doesLogContainDateAndTime() {
-        String testMessage = "Test message";
+    public void doesSetLogDateAndTime() {
+        String testMessage = "Test test test";
 
-        txtLogger.log(testMessage);
+        txtLogger.logging(testMessage);
 
-        String message = txtLogger.getLog().get(0);
+        String message = txtLogger.getLogs().get(0);
         assertThat(message, matchesPattern("^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2} > .*"));
     }
 }

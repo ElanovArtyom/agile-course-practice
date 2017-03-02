@@ -10,7 +10,7 @@ public class ViewModelWithLoggerTest extends ViewModelTests {
     @Override
     public void setUp() {
         Logger realLogger =
-                new Logger("./ViewModelWithLoggerTests.log");
+                new Logger("./ViewModelWithLoggerTests.logging");
         super.setViewModel(new ViewModel(realLogger));
     }
 }

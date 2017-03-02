@@ -50,7 +50,7 @@ public final class LineSegment2DView {
         KeyAdapter keyListener = new KeyAdapter() {
             public void keyReleased(final KeyEvent e) {
                 bind();
-                LineSegment2DView.this.viewModel.processKeyInTextField(e.getKeyCode());
+                LineSegment2DView.this.viewModel.processKeyInTF(e.getKeyCode());
                 backBind();
             }
         };
@@ -79,7 +79,7 @@ public final class LineSegment2DView {
     public static void main(final String[] args) {
         JFrame frame = new JFrame("LineSegment2DView");
 
-        Logger logger = new Logger("./Calculator.log");
+        Logger logger = new Logger("./Calculator.logging");
         frame.setContentPane(new LineSegment2DView(new ViewModel(logger)).mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
@@ -97,7 +97,7 @@ public final class LineSegment2DView {
     }
 
     private void getLog() {
-        List<String> log = viewModel.getLog();
+        List<String> log = viewModel.getLogs();
         String[] tmp = log.toArray(new String[log.size()]);
         lstLog.setListData(tmp);
     }

@@ -7,7 +7,7 @@ import ru.unn.agile.IntersectTwoLine.viewmodel.ViewModel.Status;
 import java.util.List;
 
 import static org.junit.Assert.*;
-import static ru.unn.agile.IntersectTwoLine.viewmodel.RegexMatcher.matchesPattern;
+import static ru.unn.agile.IntersectTwoLine.viewmodel.Regexmatchers.matchesPattern;
 
 
 /**
@@ -68,7 +68,7 @@ public class ViewModelTests {
     public void isStatusReadyWhenFieldsAreFill() {
         fillInputFields();
 
-        viewModel.processKeyInTextField(KeyboardKeys.ANY);
+        viewModel.processKeyInTF(KeyboardKeys.ANY);
 
         assertEquals(Status.READY, viewModel.getStatus());
     }
@@ -85,7 +85,7 @@ public class ViewModelTests {
     @Test
     public void canReportBadFormat() {
         viewModel.setA1("a");
-        viewModel.processKeyInTextField(KeyboardKeys.ANY);
+        viewModel.processKeyInTF(KeyboardKeys.ANY);
 
         assertEquals(Status.BAD_FORMAT, viewModel.getStatus());
     }
@@ -93,9 +93,9 @@ public class ViewModelTests {
     @Test
     public void canCleanStatusIfParseIsOK() {
         viewModel.setA1("a");
-        viewModel.processKeyInTextField(KeyboardKeys.ANY);
+        viewModel.processKeyInTF(KeyboardKeys.ANY);
         viewModel.setA1("1");
-        viewModel.processKeyInTextField(KeyboardKeys.ANY);
+        viewModel.processKeyInTF(KeyboardKeys.ANY);
 
         assertEquals(Status.WAITING, viewModel.getStatus());
     }
@@ -117,11 +117,11 @@ public class ViewModelTests {
     @Test
     public void isCheckButtonDisabledWhenFormatIsBad() {
         fillInputFields();
-        viewModel.processKeyInTextField(KeyboardKeys.ANY);
+        viewModel.processKeyInTF(KeyboardKeys.ANY);
         assertEquals(true, viewModel.isCalculateButtonEnabled());
 
         viewModel.setA1("a");
-        viewModel.processKeyInTextField(KeyboardKeys.ANY);
+        viewModel.processKeyInTF(KeyboardKeys.ANY);
 
         assertEquals(false, viewModel.isCalculateButtonEnabled());
     }
@@ -131,7 +131,7 @@ public class ViewModelTests {
         viewModel.setA1("1");
         viewModel.setA2("2");
 
-        viewModel.processKeyInTextField(KeyboardKeys.ANY);
+        viewModel.processKeyInTF(KeyboardKeys.ANY);
 
         assertEquals(false, viewModel.isCalculateButtonEnabled());
     }
@@ -140,7 +140,7 @@ public class ViewModelTests {
     public void isCheckButtonEnabledWithCorrectInput() {
         fillInputFields();
 
-        viewModel.processKeyInTextField(KeyboardKeys.ANY);
+        viewModel.processKeyInTF(KeyboardKeys.ANY);
 
         assertEquals(true, viewModel.isCalculateButtonEnabled());
     }
@@ -193,7 +193,7 @@ public class ViewModelTests {
     public void isStatusReadyWhenKeyIsNotEnter() {
         fillInputFields();
 
-        viewModel.processKeyInTextField(KeyboardKeys.ANY);
+        viewModel.processKeyInTF(KeyboardKeys.ANY);
 
         assertEquals(Status.READY, viewModel.getStatus());
     }
@@ -202,7 +202,7 @@ public class ViewModelTests {
     public void isStatusSuccessWhenKeyIsEnter() {
         fillInputFields();
 
-        viewModel.processKeyInTextField(KeyboardKeys.ENTER);
+        viewModel.processKeyInTF(KeyboardKeys.ENTER);
 
         assertEquals(Status.SUCCESS, viewModel.getStatus());
     }
@@ -216,20 +216,20 @@ public class ViewModelTests {
     }
 
     @Test
-    public void viewModelConstructorThrowsExceptionWithNullLogger() {
+    public void viewModelConstructorWithNullLogger() {
         try {
             new ViewModel(null);
-            fail("Exception wasn't thrown");
+            fail("Exceptionn wasn't thrown");
         } catch (IllegalArgumentException ex) {
             assertEquals("Logger parameter can't be null", ex.getMessage());
         } catch (Exception ex) {
-            fail("Invalid exception type");
+            fail("Invalidd exception type");
         }
     }
 
     @Test
     public void isLogEmptyInTheBeginning() {
-        List<String> log = viewModel.getLog();
+        List<String> log = viewModel.getLogs();
 
         assertEquals(0, log.size());
     }
@@ -238,14 +238,14 @@ public class ViewModelTests {
     public void isCalculatePuttingSomething() {
         viewModel.checkIntersect();
 
-        List<String> log = viewModel.getLog();
+        List<String> log = viewModel.getLogs();
         assertNotEquals(0, log.size());
     }
 
     @Test
     public void isLogContainsProperMessage() {
         viewModel.checkIntersect();
-        String message = viewModel.getLog().get(0);
+        String message = viewModel.getLogs().get(0);
 
         assertThat(message,
                 matchesPattern(".*" + ViewModel.LogMessages.CALCULATE_WAS_PRESSED + ".*"));
@@ -257,7 +257,7 @@ public class ViewModelTests {
 
         viewModel.checkIntersect();
 
-        String message = viewModel.getLog().get(0);
+        String message = viewModel.getLogs().get(0);
         assertThat(message, matchesPattern(".*" + viewModel.getA1()
                 + ".*" + viewModel.getB1()
                 + ".*" + viewModel.getC1()
@@ -272,7 +272,7 @@ public class ViewModelTests {
         fillInputFields();
 
         viewModel.checkIntersect();
-        String message = viewModel.getLog().get(0);
+        String message = viewModel.getLogs().get(0);
 
         assertThat(message, matchesPattern(".*Arguments"
                 + ": A1 = " + viewModel.getA1()
@@ -292,7 +292,7 @@ public class ViewModelTests {
         viewModel.checkIntersect();
         viewModel.checkIntersect();
 
-        assertEquals(3, viewModel.getLog().size());
+        assertEquals(3, viewModel.getLogs().size());
     }
 
     @Test
@@ -301,7 +301,7 @@ public class ViewModelTests {
 
         viewModel.focusLost();
 
-        String message = viewModel.getLog().get(0);
+        String message = viewModel.getLogs().get(0);
         assertThat(message, matchesPattern(".*" + ViewModel.LogMessages.EDITING_FINISHED + ".*"));
     }
 
@@ -310,7 +310,7 @@ public class ViewModelTests {
         fillInputFields();
         viewModel.focusLost();
 
-        String message = viewModel.getLog().get(0);
+        String message = viewModel.getLogs().get(0);
         assertThat(message, matchesPattern(".*" + ViewModel.LogMessages.EDITING_FINISHED
                 + "Input arguments are: \\["
                 + viewModel.getA1() + "; "
@@ -325,19 +325,20 @@ public class ViewModelTests {
     public void isLogInputsCalledOnEnter() {
         fillInputFields();
 
-        viewModel.processKeyInTextField(KeyboardKeys.ENTER);
+        viewModel.processKeyInTF(KeyboardKeys.ENTER);
 
-        String message = viewModel.getLog().get(0);
+        String message = viewModel.getLogs().get(0);
         assertThat(message, matchesPattern(".*" + ViewModel.LogMessages.EDITING_FINISHED + ".*"));
     }
 
     @Test
     public void isCalculateNotCalledWhenButtonIsDisabled() {
-        viewModel.processKeyInTextField(KeyboardKeys.ENTER);
+        viewModel.processKeyInTF(KeyboardKeys.ENTER);
 
-        String message = viewModel.getLog().get(0);
-        assertThat(message, matchesPattern(".*" + ViewModel.LogMessages.EDITING_FINISHED + ".*"));
-        assertEquals(1, viewModel.getLog().size());
+        String logMessage = viewModel.getLogs().get(0);
+        assertThat(logMessage, matchesPattern(".*"
+                + ViewModel.LogMessages.EDITING_FINISHED + ".*"));
+        assertEquals(1, viewModel.getLogs().size());
     }
 
     @Test
@@ -348,9 +349,9 @@ public class ViewModelTests {
         viewModel.focusLost();
         viewModel.focusLost();
 
-        String message = viewModel.getLog().get(0);
+        String message = viewModel.getLogs().get(0);
         assertThat(message, matchesPattern(".*" + ViewModel.LogMessages.EDITING_FINISHED + ".*"));
-        assertEquals(1, viewModel.getLog().size());
+        assertEquals(1, viewModel.getLogs().size());
     }
 
     @Test
@@ -363,7 +364,7 @@ public class ViewModelTests {
         viewModel.focusLost();
         viewModel.focusLost();
 
-        assertEquals(1, viewModel.getLog().size());
+        assertEquals(1, viewModel.getLogs().size());
     }
 
 }

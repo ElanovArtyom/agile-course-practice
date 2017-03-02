@@ -10,12 +10,12 @@ public class FakeLogger implements ILogger {
     private ArrayList<String> log = new ArrayList<String>();
 
     @Override
-    public void log(final String s) {
+    public void logging(final String s) {
         log.add(s);
     }
 
     @Override
-    public List<String> getLog() {
+    public List<String> getLogs() {
         return log;
     }
 }

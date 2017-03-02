@@ -54,8 +54,8 @@ public class ViewModel {
         private LogMessages() { }
     }
 
-    public List<String> getLog() {
-        return logger.getLog();
+    public List<String> getLogs() {
+        return logger.getLogs();
     }
 
     private String calculateLogMessage() {
@@ -141,7 +141,7 @@ public class ViewModel {
         return !a1.isEmpty() && !b1.isEmpty() && !c1.isEmpty()
                 && !a2.isEmpty() && !b2.isEmpty() && !c2.isEmpty();
     }
-    public void processKeyInTextField(final int keyCode) {
+    public void processKeyInTF(final int keyCode) {
         parseInput();
 
         if (keyCode == KeyboardKeys.ENTER) {
@@ -194,7 +194,7 @@ public class ViewModel {
     }
 
     public void checkIntersect() {
-        logger.log(calculateLogMessage());
+        logger.logging(calculateLogMessage());
 
         if (!parseInput()) {
             return;
@@ -216,7 +216,7 @@ public class ViewModel {
             return;
         }
 
-        logger.log(editingFinishedLogMessage());
+        logger.logging(editingFinishedLogMessage());
         isInputChanged = false;
     }
 

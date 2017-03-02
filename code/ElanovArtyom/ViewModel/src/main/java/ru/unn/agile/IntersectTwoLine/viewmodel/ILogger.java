@@ -6,7 +6,7 @@ package ru.unn.agile.IntersectTwoLine.viewmodel;
 import java.util.List;
 
 public interface ILogger {
-    void log(String s);
+    void logging(String s);
 
-    List<String> getLog();
+    List<String> getLogs();
 }
