@@ -2,6 +2,8 @@ package ru.unn.agile.IntersectTwoLine.infrastructure;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -68,5 +70,14 @@ public class LoggerTest {
 
         String message = txtLogger.getLogs().get(0);
         assertThat(message, matchesPattern("^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2} > .*"));
+    }
+
+    @Test(expected = Exception.class)
+    public void testMessageCanWrite() {
+        Logger failedLogger = new Logger(null);
+        String testMessage = "Test Message";
+        failedLogger.logging(testMessage);
+        String message = failedLogger.getLogs().get(0);
+        assertTrue(message.matches(".*" + testMessage + "$"));
     }
 }
