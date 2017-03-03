@@ -28,7 +28,7 @@ public class Logger implements ILogger {
     }
 
     public Logger(final String filename) {
-        this.nameOfFile = filename;
+        nameOfFile = filename;
 
         BufferedWriter writenLog = null;
         try {
